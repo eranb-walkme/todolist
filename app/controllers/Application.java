@@ -1,5 +1,6 @@
 package controllers;
 
+import BL.Repository;
 import play.*;
 import play.mvc.*;
 import play.data.*; 
@@ -11,6 +12,7 @@ import views.html.*;
 
 public class Application extends Controller {
 	
+	static Repository<Task> repository = new Repository<Task>(Task.class);
 	static Form<Task> taskForm = Form.form(Task.class);
 	
 	  public static Result index() {
@@ -19,7 +21,7 @@ public class Application extends Controller {
 	  
 	  public static Result tasks() {
 		  return ok(
-		    views.html.index.render(Task.all(), taskForm)
+		    views.html.index.render(repository.all(), taskForm)
 		);
 	}
 	  

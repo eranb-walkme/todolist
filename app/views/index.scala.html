@@ -2,7 +2,13 @@
 
 @import helper._
 
-@main("Todo list") {
+@extra_header = {
+	<script>
+		
+	</script>
+}
+
+@main("Todo list")(extra_header) {
     
     <h1>@tasks.size() task(s)</h1>
     
