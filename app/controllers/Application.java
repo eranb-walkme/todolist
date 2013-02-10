@@ -19,9 +19,8 @@ public class Application extends Controller {
 	  }
 	  
 	  public static Result tasks() {
-		  Finder<Long, Task> finder = new Finder<>(Long.class, Task.class);	
 		  return ok(
-		    views.html.index.render(finder.all(), taskForm)
+		    views.html.index.render()
 		);
 	}
 	  
@@ -29,8 +28,7 @@ public class Application extends Controller {
 		  Form<Task> filledForm = taskForm.bindFromRequest();
 		  if(filledForm.hasErrors()) {
 		    return badRequest(
-		      views.html.index.render(Task.all(), filledForm)
-		    );
+		      views.html.index.render());
 		  } else {
 		    Task.create(filledForm.get());
 		    return redirect(routes.Application.tasks());  

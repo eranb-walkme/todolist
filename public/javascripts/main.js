@@ -46,6 +46,8 @@ function refreshData()
 
 function populateTaskList(data)
 {
+    $('#header-count').html(data.length + ' Task(s)');
+
     $('#list-task').empty();
     
     $.each(data, function(key, task) {

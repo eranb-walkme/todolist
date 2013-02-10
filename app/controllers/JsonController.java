@@ -15,8 +15,8 @@ public class JsonController extends Controller
 	
 	public static Result all()
 	{		
-		Finder<Long, Task> finder = new Finder<>(Long.class, Task.class);			
-		List<Task> tasks = finder.all();
+		Finder<Long, Task> finder = new Finder<Long, Task>(Long.class, Task.class);			
+		List<Task> tasks = finder.all();		
 		return ok(Json.toJson(tasks));
 	}
 						
@@ -45,7 +45,7 @@ public class JsonController extends Controller
 		}
 		
 		Long id = Json.fromJson(node, Long.class);
-		Finder<Long, Task> finder = new Finder<>(Long.class, Task.class);		
+		Finder<Long, Task> finder = new Finder<Long, Task>(Long.class, Task.class);		
 		Task task = finder.where().eq("id", id).findUnique();
 		task.delete();
 		return ok(Json.toJson("deleted"));
