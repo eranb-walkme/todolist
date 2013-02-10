@@ -8,6 +8,8 @@ import play.data.validation.Constraints.*;
 
 import javax.persistence.*;
 
+import models.Task;
+
 
 public class Repository<T>
 {
@@ -23,4 +25,5 @@ public class Repository<T>
 	{
 		return _finder.all();
 	}
+		
 }

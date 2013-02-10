@@ -3,9 +3,7 @@
 @import helper._
 
 @extra_header = {
-	<script>
-		
-	</script>
+	<script src="@routes.Assets.at("javascripts/main.js")"></script>
 }
 
 @main("Todo list")(extra_header) {
@@ -26,12 +24,9 @@
     
     <h2>Add a new task</h2>
     
-    @form(routes.Application.newTask()) {
-        
-        @inputText(taskForm("label")) 
-        
-        <input type="submit" value="Create">
-        
-    }
+    <div>
+    	@inputText(taskForm("label"))
+    	<button id="button-create" onclick="createTaskFromUi()"> Create me </button>
+    </div>   
     
 }
