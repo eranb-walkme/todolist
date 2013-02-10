@@ -1,9 +1,9 @@
 package controllers;
 
-import BL.Repository;
 import play.*;
 import play.mvc.*;
 import play.data.*; 
+import play.db.ebean.Model.Finder;
 import models.*;
 
 
@@ -12,7 +12,6 @@ import views.html.*;
 
 public class Application extends Controller {
 	
-	static Repository<Task> repository = new Repository<Task>(Task.class);
 	static Form<Task> taskForm = Form.form(Task.class);
 	
 	  public static Result index() {
@@ -20,8 +19,9 @@ public class Application extends Controller {
 	  }
 	  
 	  public static Result tasks() {
+		  Finder<Long, Task> finder = new Finder<>(Long.class, Task.class);	
 		  return ok(
-		    views.html.index.render(repository.all(), taskForm)
+		    views.html.index.render(finder.all(), taskForm)
 		);
 	}
 	  

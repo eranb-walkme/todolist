@@ -8,7 +8,6 @@ import play.db.ebean.Model.Finder;
 import play.libs.Json;
 import play.mvc.*;
 import models.Task;
-import BL.Repository;
 import play.mvc.Controller;
 
 public class JsonController extends Controller
@@ -16,8 +15,8 @@ public class JsonController extends Controller
 	
 	public static Result all()
 	{		
-		Repository<Task> repository = new Repository<Task>(Task.class);		
-		List<Task> tasks = repository.all();
+		Finder<Long, Task> finder = new Finder<>(Long.class, Task.class);			
+		List<Task> tasks = finder.all();
 		return ok(Json.toJson(tasks));
 	}
 						
